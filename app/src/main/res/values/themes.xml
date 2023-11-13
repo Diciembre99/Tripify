@@ -1,0 +1,10 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.LoginRegister" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Ajustes generales -->
+        <item name="colorPrimary">@color/oscuro</item>
+        <item name="colorPrimaryDark">@color/crema</item>
+        <item name="colorAccent">@color/black</item>
+
+    </style>
+</resources>
