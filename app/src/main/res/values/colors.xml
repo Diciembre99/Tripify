@@ -2,6 +2,14 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="crema">#D6D4C1</color>
-    <color name="oscuro">##5C5B53</color>
+    <color name="creme">#D6D4C1</color>
+    <color name="opaco">#E8E8E2</color>
+    <color name="claro">#FAF8E2</color>
+    <color name="red">#FF0101</color>
+    <color name="gris_topo">#A69F95</color>
+    <color name="gris">#7A7A7A</color>
+    <color name="gris_azulado">#606B73</color>
+    <color name="gris_claro">#F2F2F2</color>
+
+
 </resources>

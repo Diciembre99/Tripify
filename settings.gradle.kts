@@ -13,6 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "LoginRegister"
+rootProject.name = "AppMovil"
 include(":app")
  
