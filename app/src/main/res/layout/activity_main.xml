@@ -49,7 +49,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/rubikbold"
-                android:text="Login"
+                android:text="@string/login"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="34sp"
@@ -60,7 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="44dp"
                 android:gravity="center"
-                android:text="Inicio de sesion"
+                android:text="@string/inicio_de_sesion"
                 android:textColor="#80000000" />
 
             <TextView
@@ -69,7 +69,7 @@
                 android:layout_height="44dp"
                 android:layout_marginLeft="50dp"
                 android:gravity="center_vertical"
-                android:text="Usuario"
+                android:text="@string/usuario"
                 android:textColor="#80000000"
                 android:textSize="12sp" />
 
@@ -79,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
-                android:hint="Usuario"
+                android:hint="@string/usuario"
                 app:boxStrokeWidth="0dp"
                 app:boxStrokeWidthFocused="0dp"
                 app:endIconMode="clear_text"
@@ -90,7 +90,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/rounded_corners"
-                    android:hint="Usuario"
+                    android:hint="@string/usuario"
                     android:textColor="#B3040404" /> <!-- Usar el fondo con esquinas redondas -->
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -100,7 +100,7 @@
                 android:layout_height="44dp"
                 android:layout_marginLeft="50dp"
                 android:gravity="center_vertical"
-                android:text="Contraseña"
+                android:text="@string/contrase_a"
                 android:textColor="#80000000"
                 android:textSize="12sp" />
 
@@ -120,7 +120,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/rounded_corners"
-                    android:hint="Clave"
+                    android:hint="@string/contrase_a"
                     android:inputType="textPassword"
                     android:textColor="#B3000000" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -132,7 +132,7 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="50dp"
-                android:text="Log in"
+                android:text="@string/log_in"
                 android:textColor="#FFFFFF"
                 app:backgroundTint="#000000"
                 app:cornerRadius="8dp"
@@ -145,7 +145,7 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="50dp"
-                android:text="Log in Google"
+                android:text="@string/log_con_google"
                 android:textColor="#FFFFFF"
                 app:backgroundTint="#000000"
                 app:cornerRadius="8dp"
@@ -158,7 +158,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center"
-                android:text="Olvide mi contraseña"
+                android:text="@string/olvide_mi_contrase_a"
                 android:textColor="@color/text_view" />
 
             <TextView
@@ -166,7 +166,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="44dp"
                 android:gravity="center"
-                android:text="Registrate"
+                android:text="@string/registrate"
                 android:textColor="@color/text_view" />
             />
 

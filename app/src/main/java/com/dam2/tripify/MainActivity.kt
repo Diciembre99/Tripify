@@ -143,7 +143,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun irHome(email: String, provider: Proveedor, nombre: String = "Usuario") {
         Log.e(ContentValues.TAG, "Valores: ${email}, ${provider}, ${nombre}")
-        val homeIntent = Intent(this, Home::class.java).apply {
+        val homeIntent = Intent(this, Menu::class.java).apply {
             putExtra("email", email)
             putExtra("provider", provider.name)
             putExtra("nombre", nombre)

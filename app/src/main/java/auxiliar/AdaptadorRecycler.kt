@@ -1,0 +1,4 @@
+package auxiliar
+
+class AdaptadorRecycler {
+}

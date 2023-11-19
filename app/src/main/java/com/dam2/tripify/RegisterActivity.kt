@@ -18,6 +18,7 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
         firebaseauth = FirebaseAuth.getInstance()
+        //Evitamos que se puedan dar saltos de linea en los TextView con un inputFilter
         val inputFilter = InputFilter { source, _, _, _, _, _ ->
             for (i in source.indices) {
                 if (source[i] == '\n') {
@@ -34,7 +35,7 @@ class RegisterActivity : AppCompatActivity() {
             finish()
         }
 
-        binding.btnLogin.setOnClickListener {
+        binding.btnRegister.setOnClickListener {
             if (binding.txtEmail.text!!.isNotEmpty() && binding.txtPassword.text!!.isNotEmpty()) {
                 firebaseauth.createUserWithEmailAndPassword(
                     binding.txtEmail.text.toString(),

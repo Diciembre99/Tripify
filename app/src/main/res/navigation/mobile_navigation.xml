@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.dam2.tripify.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/clientes"
+        android:name="com.dam2.tripify.clientes"
+        android:label="fragment_clientes"
+        tools:layout="@layout/fragment_clientes" >
+        <action
+            android:id="@+id/action_clientes_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
+
+</navigation>

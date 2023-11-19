@@ -1,0 +1,4 @@
+package modelo
+
+object AlmacenViajes {
+}

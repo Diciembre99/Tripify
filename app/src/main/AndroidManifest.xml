@@ -6,21 +6,17 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/banner3"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppMovil"
         tools:targetApi="31">
         <activity
-            android:name="com.dam2.tripify.Home"
+            android:name=".CardViewViajes"
             android:exported="false" />
         <activity
-            android:name="com.dam2.tripify.RegisterActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.dam2.tripify.MainActivity"
+            android:name="com.dam2.tripify.Menu"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -29,6 +25,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.dam2.tripify.RegisterActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.dam2.tripify.MainActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

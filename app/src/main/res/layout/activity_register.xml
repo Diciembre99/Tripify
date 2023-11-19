@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/rubikbold"
-                android:text="Registrarse"
+                android:text="@string/registrarse"
                 android:textAlignment="center"
                 android:textColor="#000000"
                 android:textSize="34sp" />
@@ -40,7 +40,7 @@
                 android:id="@+id/textView8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Listo para el registro? Inicia aca"
+                android:text="@string/listo_para_el_registro_inicia_ac"
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -52,7 +52,7 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="50dp"
-                android:text="Nombre" />
+                android:text="@string/nombre" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textField"
@@ -60,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
-                android:hint="Usuario"
+                android:hint="@string/usuario"
                 app:boxStrokeWidth="0dp"
                 app:boxStrokeWidthFocused="0dp"
                 app:endIconMode="clear_text"
@@ -71,7 +71,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/rounded_corners"
-                    android:hint="Usuario"
+                    android:hint="@string/usuario"
                     android:textColor="#B3040404" /> <!-- Usar el fondo con esquinas redondas -->
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -82,7 +82,7 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="50dp"
-                android:text="Correo" />
+                android:text="@string/correo" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/email"
@@ -90,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
-                android:hint="Correo@hotmail.com"
+                android:hint="@string/correo_hotmail_com"
                 app:boxStrokeWidth="0dp"
                 app:boxStrokeWidthFocused="0dp"
                 app:endIconMode="clear_text"
@@ -101,7 +101,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/rounded_corners"
-                    android:hint="Correo@hotmail.com"
+                    android:hint="@string/correo_hotmail_com"
                     android:textColor="#B3040404" /> <!-- Usar el fondo con esquinas redondas -->
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -112,7 +112,7 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="50dp"
-                android:text="Contrase'a" />
+                android:text="@string/contrase_a" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/password"
@@ -130,7 +130,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/rounded_corners"
-                    android:hint="Clave"
+                    android:hint="@string/contrase_a"
                     android:inputType="textPassword"
                     android:textColor="#B3000000" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -142,7 +142,7 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="50dp"
-                android:text="Confirma tu contrase;a" />
+                android:text="@string/confirma_tu_contrase_a" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/passwordconfirmed"
@@ -160,19 +160,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/rounded_corners"
-                    android:hint="Clave"
+                    android:hint="@string/contrase_a"
                     android:inputType="textPassword"
                     android:textColor="#B3000000" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnLogin"
+                android:id="@+id/btnRegister"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="50dp"
-                android:text="Registrar"
+                android:text="@string/registrarse"
                 android:textColor="#FFFFFF"
                 app:backgroundTint="#000000"
                 app:cornerRadius="8dp"
