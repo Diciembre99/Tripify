@@ -1,0 +1,17 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.AppMovil" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Ajustes generales -->
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryDark">@color/black</item>
+        <item name="colorOnSurface">@color/opaco</item>
+        <item name="colorAccent">@color/black</item>
+        <item name="colorError">@color/red</item>
+        <item name="android:statusBarColor">
+            @android:color/black
+        </item>
+
+    </style>
+
+    <style name="Theme.AppMovil" parent="Base.Theme.AppMovil" />
+</resources>
