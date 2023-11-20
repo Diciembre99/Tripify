@@ -9,15 +9,24 @@
         android:id="@+id/navigation_home"
         android:name="com.dam2.tripify.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_agregarViaje"
+            app:destination="@id/agregarViaje" />
+    </fragment>
     <fragment
         android:id="@+id/clientes"
         android:name="com.dam2.tripify.clientes"
         android:label="fragment_clientes"
-        tools:layout="@layout/fragment_clientes" >
+        tools:layout="@layout/fragment_clientes" />
+    <fragment
+        android:id="@+id/agregarViaje"
+        android:name="com.dam2.tripify.AgregarViaje"
+        android:label="fragment_agregar_viaje"
+        tools:layout="@layout/fragment_agregar_viaje" >
         <action
-            android:id="@+id/action_clientes_to_navigation_home"
-            app:destination="@id/navigation_home" />
+            android:id="@+id/action_agregarViaje_to_clientes"
+            app:destination="@id/clientes" />
     </fragment>
 
 </navigation>

@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- bottom_navigation_menu.xml -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
@@ -9,6 +8,10 @@
     <item
         android:id="@+id/navigation_clientes"
         android:title="Clientes"
-        android:icon="@drawable/ic_gmail"/>
+        android:icon="@drawable/ic_add_client"/>
 
+    <item
+        android:id="@+id/agregarViaje"
+        android:title="Viaje"
+        android:icon="@drawable/ic_add"/>
 </menu>
