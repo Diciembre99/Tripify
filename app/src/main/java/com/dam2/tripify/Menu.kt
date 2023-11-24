@@ -3,20 +3,11 @@ package com.dam2.tripify
 // MainActivity.kt
 import HomeFragment
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import com.dam2.appmovil.R
 import com.dam2.appmovil.databinding.ActivityMenuBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
 import modelo.Almacen
 import modelo.Usuario
 

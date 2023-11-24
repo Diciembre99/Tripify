@@ -127,8 +127,8 @@
 
                 <ImageButton
                     android:id="@+id/btnCalendario"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_marginLeft="20dp"
                     android:background="#00FFFFFF"
                     android:scaleType="fitXY"
