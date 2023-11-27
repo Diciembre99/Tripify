@@ -1,7 +1,6 @@
 package modelo
 
-import android.text.Editable
 import java.io.Serializable
 
-data class Viaje(var destino: Editable?, var origen: Editable?, var cliente: Editable?, var fecha:String):Serializable {
+data class Viaje(var destino: String, var origen: String, var cliente: String, var fecha:String,var hora:String,var llave:String? = null,):Serializable {
 }

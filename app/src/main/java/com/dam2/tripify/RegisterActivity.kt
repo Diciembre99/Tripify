@@ -7,14 +7,13 @@ import android.os.Bundle
 import android.text.InputFilter
 import android.util.Log
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
+import com.dam2.appmovil.R
 import com.dam2.appmovil.databinding.ActivityRegisterBinding
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import modelo.Usuario
 
 class RegisterActivity : AppCompatActivity() {
     lateinit var binding: ActivityRegisterBinding
@@ -55,27 +54,28 @@ class RegisterActivity : AppCompatActivity() {
                             var email = binding.txtEmail.text.toString()
                             var name = binding.txtName.text.toString()
                             var password = binding.txtPassword.text.toString()
-                            auxiliar.conexion.guardarUsuario(this, email, name, password)
-                            //Esto de los interrogantes es por si está vacío el email, que enviaría una cadena vacía.
+                            auxiliar.Conexion.guardarUsuario(this, email, name, password)
+                            acceder(email, name, password)
                         } else {
-                            showAlert("Error registrando al usuario.")
+                            showAlert(R.string.messageRegister)
                         }
                     }.addOnFailureListener {
                         Toast.makeText(this, "Conexión no establecida", Toast.LENGTH_SHORT).show()
                     }
                 }
             } else {
-                showAlert("Rellene todos campos")
+                showAlert(R.string.messageFieldError)
             }
         }
     }
-    private fun showAlert(msg: String = "Se ha producido un error autenticando al usuario") {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Error")
-        builder.setMessage(msg)
-        builder.setPositiveButton("Aceptar", null)
-        val dialog: AlertDialog = builder.create()
-        dialog.show()
+    fun showAlert(mensaje: Int) {
+        MaterialAlertDialogBuilder(this)
+            .setTitle(resources.getString(R.string.title))
+            .setMessage(resources.getString(mensaje))
+            .setIcon(resources.getDrawable(R.drawable.ic_message_error))
+            .setPositiveButton(resources.getString(R.string.positive_button)) { dialog, which ->
+            }
+            .show()
     }
 
 
@@ -87,10 +87,7 @@ class RegisterActivity : AppCompatActivity() {
             false
         }
     }
-    private fun acceder(u:Usuario){
-        var email = u.correo
-        var password = u.password
-        var nombre = u.nombre
+    private fun acceder(email:String,nombre:String,password:String){
         var provider =Proveedor.BASIC
         Log.e(ContentValues.TAG, "Valores: ${email}, ${provider}, $nombre")
         val homeIntent = Intent(this, Menu::class.java).apply {

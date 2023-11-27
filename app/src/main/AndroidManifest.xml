@@ -13,11 +13,12 @@
         android:theme="@style/Theme.AppMovil"
         tools:targetApi="31">
         <activity
+            android:name="com.dam2.tripify.infoViajes"
+            android:exported="false" />
+        <activity
             android:name="com.dam2.tripify.Menu"
             android:exported="false"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name="com.dam2.tripify.RegisterActivity"
             android:exported="false"
@@ -32,6 +33,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="com.google.android.gms.auth.api.signin.client"
             android:resource="@string/your_web_client_id" />

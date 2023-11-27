@@ -32,4 +32,22 @@
     <string name="correo">Email</string>
     <string name="correo_hotmail_com">Email@hotmail.com</string>
     <string name="confirma_tu_contrase_a">Confirm your password</string>
+    <string name="title">Error</string>
+    <string name="messageFieldError">Complete all fields</string>
+    <string name="positive_button">Accept</string>
+    <string name="messageRegister">Error Register</string>
+    <string name="viajes">Trips</string>
+    <string name="viajes_en_pendientes">Pending Trips</string>
+    <string name="destino">Destination</string>
+    <string name="ubicacion">Location</string>
+    <string name="origen">Origin</string>
+    <string name="cliente">Client</string>
+    <string name="fecha">Date</string>
+    <string name="agregar">Add</string>
+    <string name="hora">Time</string>
+    <string name="editar">Edit</string>
+    <string name="guardar">Save</string>
+    <string name="Bienveido">Welcome</string>
+    <string name="informacion_del_viaje">Travel Information</string>
+
 </resources>

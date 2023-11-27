@@ -11,8 +11,8 @@ import android.widget.ImageView
 import android.widget.ScrollView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import auxiliar.Conexion
 import com.dam2.appmovil.R
 import com.dam2.appmovil.databinding.ActivityMainBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -20,6 +20,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.tasks.Task
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 
@@ -52,18 +53,19 @@ class MainActivity : AppCompatActivity() {
                     binding.txtPassword.text.toString()
                 ).addOnCompleteListener {
                     if (it.isSuccessful) {
+                        Conexion.cargarViajes(it.result?.user?.email ?: "")
                         irHome(
                             it.result?.user?.email ?: "",
                             Proveedor.BASIC
                         )  //Esto de los interrogantes es por si está vacío el email.
                     } else {
-                        showAlert()
+                        showAlert(R.string.messageRegister)
                     }
                 }.addOnFailureListener {
                     Toast.makeText(this, "Conexión no establecida", Toast.LENGTH_SHORT).show()
                 }
             } else {
-                showAlert("Rellene los campos")
+                showAlert(R.string.messageFieldError)
             }
         }
         binding.tvRegister.setOnClickListener {
@@ -91,15 +93,13 @@ class MainActivity : AppCompatActivity() {
         logoImageView.startAnimation(fadeInAnimation)
     }
     private fun loginEnGoogle(){
-        //este método es nuestro.
         val signInClient = googleSignInClient.signInIntent
         launcherVentanaGoogle.launch(signInClient)
-        //milauncherVentanaGoogle.launch(signInClient)
+
     }
 
-    //con este launcher, abro la ventana que me lleva a la validacion de Google.
+
     private val launcherVentanaGoogle =  registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
-        //si la ventana va bien, se accede a las propiedades que trae la propia ventana q llamamos y recogemos en result.
         if (result.resultCode == Activity.RESULT_OK){
             val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
             manejarResultados(task)
@@ -124,6 +124,7 @@ class MainActivity : AppCompatActivity() {
         firebaseauth.signInWithCredential(credential).addOnCompleteListener {
             if (it.isSuccessful){
                 //hacer account. y ver otras propiedades interesantes.
+                Conexion.cargarViajes(account.email.toString())
                 irHome(account.email.toString(),Proveedor.GOOGLE, account.displayName.toString())
             }
             else {
@@ -132,13 +133,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun showAlert(msg: String = "Se ha producido un error autenticando al usuario") {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Error")
-        builder.setMessage(msg)
-        builder.setPositiveButton("Aceptar", null)
-        val dialog: AlertDialog = builder.create()
-        dialog.show()
+    private fun showAlert(mensaje:Int) {
+        MaterialAlertDialogBuilder(this)
+            .setTitle(resources.getString(R.string.title))
+            .setMessage(resources.getString(mensaje))
+            .setIcon(resources.getDrawable(R.drawable.ic_message_error))
+            .setPositiveButton(resources.getString(R.string.positive_button)) { dialog, which ->
+            }
+            .show()
     }
 
     private fun irHome(email: String, provider: Proveedor, nombre: String = "Usuario") {
