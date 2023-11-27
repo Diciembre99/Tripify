@@ -48,6 +48,9 @@
     <string name="guardar">Guardar</string>
     <string name="Bienveido">Bienvenido</string>
     <string name="informacion_del_viaje">Informacion del viaje</string>
+    <string name="home">Home</string>
+    <string name="clientes">Clientes</string>
+    <string name="viaje">Viaje</string>
 
 
 </resources>

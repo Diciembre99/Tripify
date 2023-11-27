@@ -24,16 +24,6 @@ class HomeFragment : Fragment() {
         super.onResume()
     }
 
-    override fun onStart() {
-        miRecyclerView = binding.recyclerViajes as RecyclerView
-        miRecyclerView.setHasFixedSize(true)//hace que se ajuste a lo que has diseñado
-        miRecyclerView.layoutManager = LinearLayoutManager(requireContext())//se dice el tipo de Layout, dejampos este.
-        val miAdapter = AdaptadorRecycler(AlmacenViajes.viajes,requireContext() )
-        miRecyclerView.adapter = miAdapter
-        val cabecera = AlmacenViajes.viajes.size.toString()+" Viajes"
-        binding.tvViajes.text = cabecera
-        super.onStart()
-    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

@@ -49,5 +49,8 @@
     <string name="guardar">Save</string>
     <string name="Bienveido">Welcome</string>
     <string name="informacion_del_viaje">Travel Information</string>
+    <string name="home">Home</string>
+    <string name="clientes">Clients</string>
+    <string name="viaje">Travel</string>
 
 </resources>

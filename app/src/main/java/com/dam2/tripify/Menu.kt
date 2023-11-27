@@ -66,7 +66,7 @@ class Menu : AppCompatActivity() {
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
         bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
         //Menu superior
-        val bienvenido = R.string.Bienveido
+        var bienvenido = resources.getString(R.string.Bienveido)
         binding.toolbar.title = "$bienvenido $nombre"
         //aquí simplemente inflo la toolBaar, pero aún no hay opciones ni botón home.
         setSupportActionBar(binding.toolbar)

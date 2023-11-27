@@ -3,15 +3,15 @@
 
     <item
         android:id="@+id/navigation_home"
-        android:title="Home"
+        android:title="@string/home"
         android:icon="@drawable/ic_home_black_24dp" />
     <item
         android:id="@+id/navigation_clientes"
-        android:title="Clientes"
+        android:title="@string/clientes"
         android:icon="@drawable/ic_add_client"/>
 
     <item
         android:id="@+id/agregarViaje"
-        android:title="Viaje"
+        android:title="@string/viaje"
         android:icon="@drawable/ic_add"/>
 </menu>
