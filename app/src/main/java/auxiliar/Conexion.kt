@@ -15,29 +15,82 @@ import modelo.Viaje
 
 
 object Conexion {
-    private lateinit var firebaseauth : FirebaseAuth
+    private lateinit var firebaseauth: FirebaseAuth
     val db = Firebase.firestore
     val viajesRef = db.collection("viajes")
 
-    fun guardarUsuario(context: Context,email:String,name:String,password:String){
-        var u:Usuario = Usuario(name, email, password)
+    fun cargarUsuario(email: String) {
+        val db = FirebaseFirestore.getInstance()
+        db.collection("users")
+            .whereEqualTo("email", email)
+            .get()
+            .addOnSuccessListener { documents ->
+                if (!documents.isEmpty) {
+                    val document = documents.first()
+                    Almacen.usuario = Usuario(
+                        document.get("name").toString(),
+                        document.get("email").toString(),
+                        document.get("rol").toString()
+                    )
+                } else {
+                }
+            }
+    }
+
+    fun guardarUsuario(
+        context: Context,
+        email: String,
+        name: String,
+        password: String,
+        rol: String
+    ) {
+        var u: Usuario = Usuario(name, email, password, rol)
         var user = hashMapOf(
             "email" to email,
             "name" to name,
             "password" to password,
-            "roles" to arrayListOf(1, 2, 3),
+            "roles" to rol,
             "timestamp" to FieldValue.serverTimestamp()
         )
         db.collection("users")
             .document(user.get("email").toString()) //Será la clave del documento.
             .set(user).addOnSuccessListener {
                 Toast.makeText(context, "Almacenado", Toast.LENGTH_SHORT).show()
-            }.addOnFailureListener{
+            }.addOnFailureListener {
                 Toast.makeText(context, "Ha ocurrido un error", Toast.LENGTH_SHORT).show()
             }
     }
 
-    fun modificarViajes(v:Viaje,context:Context){
+    fun cargarViajes(email: String) {
+        val db = FirebaseFirestore.getInstance()
+        val arrayList = ArrayList<Viaje>()
+        AlmacenViajes.viajes = ArrayList()
+        db.collection("viajes")
+            .whereEqualTo("email", email)
+            .get()
+            .addOnSuccessListener {
+                for (document in it) {
+                    AlmacenViajes.viajes.add(
+                        Viaje(
+                            document.get("destino").toString(),
+                            document.get("origen").toString(),
+                            document.get("cliente").toString(),
+                            document.get("fecha").toString(),
+                            document.get("hora").toString(),
+                            document.id
+                        )
+                    )
+                }
+            }.addOnCompleteListener {
+                Log.d("KRCC", AlmacenViajes.viajes.toString())
+            }.addOnFailureListener {
+                Log.d("KRCC", "Error al cargar")
+            }.addOnCanceledListener {
+                Log.d("KRCC", "Cancel")
+            }
+    }
+
+    fun modificarViajes(v: Viaje, context: Context) {
         val db = FirebaseFirestore.getInstance()
         var viaje = hashMapOf(
             "email" to Almacen.usuario.correo.toString(),
@@ -51,14 +104,20 @@ object Conexion {
         db.collection("viajes").document(v.llave.toString())
             .set(viaje)// Utiliza add() para agregar un nuevo documento con una clave autogenerada
             .addOnSuccessListener { documentReference ->
-                Toast.makeText(context, "Viaje modificado tu viaje a: ${v.destino}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    context,
+                    "Viaje modificado tu viaje a: ${v.destino}",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
             .addOnFailureListener {
                 Toast.makeText(context, "Ha ocurrido un error", Toast.LENGTH_SHORT).show()
-            }.addOnCompleteListener{
+            }.addOnCompleteListener {
                 Conexion.cargarViajes(Almacen.usuario.correo)
             }
     }
+
+
     fun guardarViaje(context: Context?, v: Viaje) {
         var viaje = hashMapOf(
             "email" to Almacen.usuario.correo.toString(),
@@ -73,16 +132,21 @@ object Conexion {
         db.collection("viajes")
             .add(viaje) // Utiliza add() para agregar un nuevo documento con una clave autogenerada
             .addOnSuccessListener { documentReference ->
-                Toast.makeText(context, "Viaje añadido tu viaje a: ${v.destino}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    context,
+                    "Viaje añadido tu viaje a: ${v.destino}",
+                    Toast.LENGTH_SHORT
+                ).show()
                 v.llave = documentReference.id
             }
             .addOnFailureListener {
                 Toast.makeText(context, "Ha ocurrido un error", Toast.LENGTH_SHORT).show()
-            }.addOnCompleteListener{
+            }.addOnCompleteListener {
                 Conexion.cargarViajes(Almacen.usuario.correo)
             }
     }
-    fun eliminarViaje(context: Context?,codigo: String){
+
+    fun eliminarViaje(context: Context?, codigo: String) {
         val db = FirebaseFirestore.getInstance()
         // Obtener la referencia del documento usando la clave
         val referenciaDocumento = db.collection("viajes").document(codigo)
@@ -96,24 +160,5 @@ object Conexion {
                 Log.w("TAG", "Error al eliminar documento", e)
             }
     }
-    fun cargarViajes(email: String) {
-        val db = FirebaseFirestore.getInstance()
-        val arrayList = ArrayList<Viaje>()
-        AlmacenViajes.viajes = ArrayList()
-        db.collection("viajes")
-            .whereEqualTo("email", email)
-            .get()
-            .addOnSuccessListener {
-                for (document in it){
-                    AlmacenViajes.viajes.add(Viaje(document.get("destino").toString(),document.get("origen").toString(),
-                        document.get("cliente").toString(),document.get("fecha").toString(),document.get("hora").toString(),document.id))
-                }
-            }.addOnCompleteListener{
-                Log.d("KRCC", AlmacenViajes.viajes.toString())
-            }.addOnFailureListener{
-                Log.d("KRCC", "Error al cargar")
-            }.addOnCanceledListener {
-                Log.d("KRCC", "Cancel")
-            }
-    }
+
 }

@@ -11,6 +11,7 @@ import com.dam2.appmovil.databinding.ActivityInfoViajesBinding
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
+import modelo.Almacen
 import modelo.AlmacenViajes
 import modelo.Viaje
 import java.util.Date
@@ -24,6 +25,10 @@ class infoViajes : AppCompatActivity() {
         setContentView(binding.root)
         var v = intent.getSerializableExtra("obj") as Viaje
 
+        if (Almacen.usuario.rol == "pasajero"){
+
+            binding.swEdit.isVisible = false
+        }
         binding.toolbarDetalle.setTitle("Viaje a " + v.destino)
         binding.cliente.setText(v.cliente)
         binding.destino.setText(v.destino)

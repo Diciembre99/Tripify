@@ -12,6 +12,7 @@ import com.dam2.appmovil.R.id.mnOp1
 import com.dam2.appmovil.databinding.ActivityMenuBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.android.gms.auth.api.identity.Identity
 import modelo.Almacen
 import modelo.Usuario
 
@@ -19,7 +20,7 @@ class Menu : AppCompatActivity() {
 
 
     private val homeFragment = HomeFragment()
-    private val clientesFragment = Fragment()
+    private val clientesFragment = clientes()
     private val agregarViajeragment = AgregarViaje()
     private lateinit var binding: ActivityMenuBinding
     private lateinit var firebaseauth : FirebaseAuth
@@ -31,6 +32,8 @@ class Menu : AppCompatActivity() {
         when(item.itemId){
             mnOp1 -> {
                 firebaseauth.signOut()
+                val signInClient = Identity.getSignInClient(this)
+                signInClient.signOut()
                 finish()
             }
         }
@@ -43,7 +46,7 @@ class Menu : AppCompatActivity() {
                     loadFragment(homeFragment)
                     return@OnNavigationItemSelectedListener true
                 }
-                R.id.navigation_clientes -> {
+                R.id.fragment_cliente -> {
                     loadFragment(clientesFragment)
                     return@OnNavigationItemSelectedListener true
                 }
@@ -58,6 +61,7 @@ class Menu : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         var binding = ActivityMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        firebaseauth = FirebaseAuth.getInstance()
         var nombre:String = intent.getStringExtra("nombre").toString()
         var email:String = intent.getStringExtra("email").toString()
         var provider:String = intent.getStringExtra("provider").toString()
@@ -68,12 +72,9 @@ class Menu : AppCompatActivity() {
         //Menu superior
         var bienvenido = resources.getString(R.string.Bienveido)
         binding.toolbar.title = "$bienvenido $nombre"
-        //aquí simplemente inflo la toolBaar, pero aún no hay opciones ni botón home.
         setSupportActionBar(binding.toolbar)
         loadFragment(homeFragment)
     }
-
-
 
     private fun loadFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction().replace(R.id.container, fragment).commit()

@@ -6,7 +6,7 @@
         android:title="@string/home"
         android:icon="@drawable/ic_home_black_24dp" />
     <item
-        android:id="@+id/navigation_clientes"
+        android:id="@+id/fragment_cliente"
         android:title="@string/clientes"
         android:icon="@drawable/ic_add_client"/>
 

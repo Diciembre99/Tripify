@@ -42,7 +42,7 @@ class RegisterActivity : AppCompatActivity() {
             finish()
         }
 
-        binding.btnRegister.setOnClickListener {
+        binding.btnCambiarFoto.setOnClickListener {
             if (binding.txtEmail.text!!.isNotEmpty() && binding.txtPassword.text!!.isNotEmpty() && binding.txtName.text!!.isNotEmpty() && binding.txtPasswordConfirmed.text!!.isNotEmpty()) {
                 if (confirmarClave()){
                     firebaseauth.createUserWithEmailAndPassword(
@@ -51,10 +51,17 @@ class RegisterActivity : AppCompatActivity() {
                     ).addOnCompleteListener {
                         if (it.isSuccessful) {
                             Toast.makeText(this,"Registrado con exito", Toast.LENGTH_SHORT).show()
+                            var rol = ""
                             var email = binding.txtEmail.text.toString()
                             var name = binding.txtName.text.toString()
                             var password = binding.txtPassword.text.toString()
-                            auxiliar.Conexion.guardarUsuario(this, email, name, password)
+                            if (binding.rbConductor.isChecked){
+                                rol = "conductor"
+                            }else{
+                                rol = "pasajero"
+                            }
+                            auxiliar.Conexion.guardarUsuario(this, email, name, password,rol)
+                            Log.d("KRCC::", "Se guardo el usuario")
                             acceder(email, name, password)
                         } else {
                             showAlert(R.string.messageRegister)
@@ -88,14 +95,16 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
     private fun acceder(email:String,nombre:String,password:String){
-        var provider =Proveedor.BASIC
-        Log.e(ContentValues.TAG, "Valores: ${email}, ${provider}, $nombre")
-        val homeIntent = Intent(this, Menu::class.java).apply {
-            putExtra("email", email)
-            putExtra("provider", provider.name)
-            putExtra("nombre", nombre)
-        }
-        startActivity(homeIntent)
+//        var provider =Proveedor.BASIC
+//
+//        val homeIntent = Intent(this, Menu::class.java).apply {
+//            putExtra("email", email)
+//            putExtra("provider", provider.name)
+//            putExtra("nombre", nombre)
+//        }
+//        Log.d("KRCC", "Trata de Acceder")
+//        startActivity(homeIntent)
+        finish()
     }
 
 }

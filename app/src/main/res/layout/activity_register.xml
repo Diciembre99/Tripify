@@ -165,8 +165,28 @@
                     android:textColor="#B3000000" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <RadioGroup
+                android:layout_width="299dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:orientation="horizontal"
+                android:textAlignment="center">
+
+                <RadioButton
+                    android:id="@+id/rbConductor"
+                    android:layout_width="135dp"
+                    android:layout_height="wrap_content"
+                    android:text="Conductor" />
+
+                <RadioButton
+                    android:id="@+id/rbPasajero"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pasajero" />
+            </RadioGroup>
+
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnRegister"
+                android:id="@+id/btnCambiarFoto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
@@ -177,6 +197,7 @@
                 app:backgroundTint="#000000"
                 app:cornerRadius="8dp"
                 app:icon="@drawable/login" />
+
         </LinearLayout>
     </ScrollView>
 

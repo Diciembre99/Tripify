@@ -59,6 +59,7 @@ class MainActivity : AppCompatActivity() {
                             Proveedor.BASIC
                         )  //Esto de los interrogantes es por si está vacío el email.
                     } else {
+
                         showAlert(R.string.messageRegister)
                     }
                 }.addOnFailureListener {

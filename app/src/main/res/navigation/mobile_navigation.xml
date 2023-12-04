@@ -15,7 +15,7 @@
             app:destination="@id/agregarViaje" />
     </fragment>
     <fragment
-        android:id="@+id/clientes"
+        android:id="@+id/fragment_cliente"
         android:name="com.dam2.tripify.clientes"
         android:label="fragment_clientes"
         tools:layout="@layout/fragment_clientes" />
@@ -26,7 +26,7 @@
         tools:layout="@layout/fragment_agregar_viaje" >
         <action
             android:id="@+id/action_agregarViaje_to_clientes"
-            app:destination="@id/clientes" />
+            app:destination="@id/fragment_cliente" />
     </fragment>
 
 </navigation>
