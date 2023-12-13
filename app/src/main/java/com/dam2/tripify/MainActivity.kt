@@ -23,6 +23,8 @@ import com.google.android.gms.tasks.Task
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import modelo.Almacen
+import modelo.Usuario
 
 
 class MainActivity : AppCompatActivity() {
@@ -146,7 +148,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun irHome(email: String, provider: Proveedor, nombre: String = "Usuario") {
         Log.e(ContentValues.TAG, "Valores: ${email}, ${provider}, ${nombre}")
-        val homeIntent = Intent(this, Menu::class.java).apply {
+        var u:Usuario = Usuario(nombre,email, provider.toString());
+        Almacen.usuario = u;
+        val homeIntent = Intent(this, ActivityFragments::class.java).apply {
             putExtra("email", email)
             putExtra("provider", provider.name)
             putExtra("nombre", nombre)

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import auxiliar.Conexion
 import com.dam2.appmovil.R
 import com.dam2.tripify.infoViajes
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import modelo.AlmacenViajes
 import modelo.Viaje
 
@@ -78,12 +79,22 @@ class AdaptadorRecycler(var viajes:ArrayList<Viaje>, var context: Context) : Rec
                 }
                 miAdaptadorRecycler.notifyDataSetChanged()
             }
-            itemView.setOnLongClickListener(View.OnLongClickListener {
-                Conexion.eliminarViaje(context,AlmacenViajes.viajes[pos].llave.toString())
-                AlmacenViajes.viajes.removeAt(pos)
-                miAdaptadorRecycler.notifyDataSetChanged()
-                true
-            })
+            itemView.setOnLongClickListener {
+                MaterialAlertDialogBuilder(context)
+                    .setTitle("Aviso")
+                    .setMessage("¿Seguro que quieres eliminar este viaje?")
+                    .setPositiveButton("Aceptar") { dialog, which ->
+                        Conexion.eliminarViaje(context, AlmacenViajes.viajes[pos].llave.toString())
+                        AlmacenViajes.viajes.removeAt(pos)
+                        miAdaptadorRecycler.notifyDataSetChanged()
+                    }
+                    .setNegativeButton("Cancelar") { dialog, which ->
+                        // No es necesario hacer nada aquí si se ha cancelado
+                    }
+                    .show()
+
+                true // Devuelve true para indicar que has manejado el evento de clic largo
+            }
             card.setOnClickListener {
                 var inte : Intent = Intent(context, infoViajes::class.java)
                 inte.putExtra("obj",v)

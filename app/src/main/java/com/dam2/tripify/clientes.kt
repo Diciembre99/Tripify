@@ -81,6 +81,9 @@ class clientes : Fragment() {
         fileDownload()
         binding = FragmentClientesBinding.inflate(inflater, container, false)
         // Inflate the layout for this fragment
+        Log.e(TAG, Almacen.usuario.nombre)
+        Log.e(TAG, Almacen.usuario.correo)
+
         val nombre = Almacen.usuario.nombre.toString()
         val correo = Almacen.usuario.correo.toString()
         binding.tvNombre.text = nombre
