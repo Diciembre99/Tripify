@@ -1,12 +1,10 @@
 package com.dam2.tripify
 
-import Auxiliar.AdaptadorRecycler
+import auxiliar.AdaptadorRecycler
 import android.icu.text.SimpleDateFormat
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.core.view.isVisible
-import com.dam2.appmovil.R
 import com.dam2.appmovil.databinding.ActivityInfoViajesBinding
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker

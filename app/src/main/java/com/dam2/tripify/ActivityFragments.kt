@@ -55,6 +55,7 @@ class ActivityFragments : AppCompatActivity() {
                 0->{"Viajes"}
                 1->{"Agregar Viajes"}
                 2->{"Informacion de usuarios"}
+                3->{"Cartera de clientes"}
                 else->{throw Resources.NotFoundException("Posición no encontrada") }
             }
         }.attach()

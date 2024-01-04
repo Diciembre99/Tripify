@@ -51,6 +51,9 @@
     <string name="home">Home</string>
     <string name="clientes">Clientes</string>
     <string name="viaje">Viaje</string>
+    <string name="apellidos">Apellidos</string>
+    <string name="telefono">Telefono</string>
+    <string name="Foto">Foto</string>
 
 
 </resources>

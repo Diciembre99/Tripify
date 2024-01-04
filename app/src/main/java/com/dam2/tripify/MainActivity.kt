@@ -55,7 +55,12 @@ class MainActivity : AppCompatActivity() {
                     binding.txtPassword.text.toString()
                 ).addOnCompleteListener {
                     if (it.isSuccessful) {
+                        Log.d("KRCC", "Cargando clientes")
+                        Conexion.cargarClientes(it.result?.user?.email ?: "")
+                        Log.d("KRCC", "Cargando viajes")
                         Conexion.cargarViajes(it.result?.user?.email ?: "")
+
+
                         irHome(
                             it.result?.user?.email ?: "",
                             Proveedor.BASIC
@@ -128,6 +133,7 @@ class MainActivity : AppCompatActivity() {
             if (it.isSuccessful){
                 //hacer account. y ver otras propiedades interesantes.
                 Conexion.cargarViajes(account.email.toString())
+                Conexion.cargarClientes(account.email.toString())
                 irHome(account.email.toString(),Proveedor.GOOGLE, account.displayName.toString())
             }
             else {

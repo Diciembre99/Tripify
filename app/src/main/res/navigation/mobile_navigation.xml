@@ -18,7 +18,11 @@
         android:id="@+id/fragment_cliente"
         android:name="com.dam2.tripify.clientes"
         android:label="fragment_clientes"
-        tools:layout="@layout/fragment_clientes" />
+        tools:layout="@layout/fragment_clientes" >
+        <action
+            android:id="@+id/action_fragment_cliente_to_cartera_clientes"
+            app:destination="@id/cartera_clientes" />
+    </fragment>
     <fragment
         android:id="@+id/agregarViaje"
         android:name="com.dam2.tripify.AgregarViaje"
@@ -28,5 +32,10 @@
             android:id="@+id/action_agregarViaje_to_clientes"
             app:destination="@id/fragment_cliente" />
     </fragment>
+    <fragment
+        android:id="@+id/cartera_clientes"
+        android:name="com.dam2.tripify.Cartera_clientes"
+        android:label="fragment_cartera_clientes"
+        tools:layout="@layout/fragment_cartera_clientes" />
 
 </navigation>

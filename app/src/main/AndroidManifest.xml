@@ -21,6 +21,9 @@
         android:theme="@style/Theme.AppMovil"
         tools:targetApi="31">
         <activity
+            android:name="com.dam2.tripify.AgregarCliente"
+            android:exported="false" />
+        <activity
             android:name="com.dam2.tripify.ActivityFragments"
             android:exported="false" />
         <activity

@@ -9,7 +9,9 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import modelo.Almacen
+import modelo.AlmacenCliente
 import modelo.AlmacenViajes
+import modelo.Cliente
 import modelo.Usuario
 import modelo.Viaje
 
@@ -61,9 +63,94 @@ object Conexion {
             }
     }
 
+    fun cargarClientes(email: String) {
+        val db = FirebaseFirestore.getInstance()
+        AlmacenCliente.Clientes = ArrayList()
+        Log.d("KRCC","Haciendo consulta del correo: $email")
+        db.collection("clients")
+            .whereEqualTo("email", email)
+            .get()
+            .addOnSuccessListener {
+                Log.d("KRCC", "Exito al cargar clientes")
+                for (document in it) {
+                    AlmacenCliente.Clientes.add(
+                        Cliente(
+                            document.get("nombre").toString(),
+                            document.get("apellido").toString(),
+                            document.get("telefono").toString(),
+                            document.id
+                        )
+                    )
+                }
+            }.addOnCompleteListener {
+                Log.d("KRCC", AlmacenCliente.Clientes.toString())
+            }.addOnFailureListener {
+                Log.d("KRCC", "Error al cargar")
+            }.addOnCanceledListener {
+                Log.d("KRCC", "Cancel")
+            }
+    }
+    fun guardarCliente(
+        context: Context,
+        cliente: Cliente
+    ) {
+        val nombre = cliente.nombre.toString()
+        val apellido = cliente.apellido.toString()
+        val telefono = cliente.numero.toString()
+        var c: Cliente = Cliente(nombre, apellido, telefono)
+        var client = hashMapOf(
+            "nombre" to nombre,
+            "apellido" to apellido,
+            "telefono" to telefono,
+            "email" to Almacen.usuario.correo,
+            "timestamp" to FieldValue.serverTimestamp()
+        )
+        db.collection("clients")
+            .add(client) // Utiliza add() para agregar un nuevo documento con una clave autogenerada
+            .addOnSuccessListener { documentReference ->
+                Toast.makeText(
+                    context,
+                    "Se ha guardado con exito al cliente ${c.nombre}",
+                    Toast.LENGTH_SHORT
+                ).show()
+                c.llave = documentReference.id
+            }
+            .addOnFailureListener {
+                Toast.makeText(context, "Ha ocurrido un error", Toast.LENGTH_SHORT).show()
+            }.addOnCompleteListener {
+                Conexion.cargarClientes(Almacen.usuario.correo)
+            }
+    }
+    fun guardarViaje(context: Context?, v: Viaje) {
+        var viaje = hashMapOf(
+            "email" to Almacen.usuario.correo.toString(),
+            "destino" to v.destino.toString(),
+            "origen" to v.origen.toString(),
+            "cliente" to v.cliente.toString(),
+            "fecha" to v.fecha.toString(),
+            "hora" to v.hora.toString(),
+            "timestamp" to FieldValue.serverTimestamp()
+        )
+
+        db.collection("viajes")
+            .add(viaje) // Utiliza add() para agregar un nuevo documento con una clave autogenerada
+            .addOnSuccessListener { documentReference ->
+                Toast.makeText(
+                    context,
+                    "Viaje añadido tu viaje a: ${v.destino}",
+                    Toast.LENGTH_SHORT
+                ).show()
+                v.llave = documentReference.id
+            }
+            .addOnFailureListener {
+                Toast.makeText(context, "Ha ocurrido un error", Toast.LENGTH_SHORT).show()
+            }.addOnCompleteListener {
+                Conexion.cargarViajes(Almacen.usuario.correo)
+            }
+    }
+
     fun cargarViajes(email: String) {
         val db = FirebaseFirestore.getInstance()
-        val arrayList = ArrayList<Viaje>()
         AlmacenViajes.viajes = ArrayList()
         db.collection("viajes")
             .whereEqualTo("email", email)
@@ -117,34 +204,21 @@ object Conexion {
             }
     }
 
-
-    fun guardarViaje(context: Context?, v: Viaje) {
-        var viaje = hashMapOf(
-            "email" to Almacen.usuario.correo.toString(),
-            "destino" to v.destino.toString(),
-            "origen" to v.origen.toString(),
-            "cliente" to v.cliente.toString(),
-            "fecha" to v.fecha.toString(),
-            "hora" to v.hora.toString(),
-            "timestamp" to FieldValue.serverTimestamp()
-        )
-
-        db.collection("viajes")
-            .add(viaje) // Utiliza add() para agregar un nuevo documento con una clave autogenerada
-            .addOnSuccessListener { documentReference ->
-                Toast.makeText(
-                    context,
-                    "Viaje añadido tu viaje a: ${v.destino}",
-                    Toast.LENGTH_SHORT
-                ).show()
-                v.llave = documentReference.id
+    fun eliminarCliente(context: Context?, codigo: String) {
+        val db = FirebaseFirestore.getInstance()
+        // Obtener la referencia del documento usando la clave
+        val referenciaDocumento = db.collection("clients").document(codigo)
+        // Eliminar el documento
+        referenciaDocumento.delete()
+            .addOnSuccessListener {
+                Toast.makeText(context, "Cliente eliminado con exito", Toast.LENGTH_SHORT).show()
+                Log.d("TAG", "Documento eliminado correctamente")
             }
-            .addOnFailureListener {
-                Toast.makeText(context, "Ha ocurrido un error", Toast.LENGTH_SHORT).show()
-            }.addOnCompleteListener {
-                Conexion.cargarViajes(Almacen.usuario.correo)
+            .addOnFailureListener { e ->
+                Log.w("TAG", "Error al eliminar documento", e)
             }
     }
+
 
     fun eliminarViaje(context: Context?, codigo: String) {
         val db = FirebaseFirestore.getInstance()
