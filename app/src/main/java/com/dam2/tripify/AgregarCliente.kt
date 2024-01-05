@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import auxiliar.AdaptadorRecyclerCliente
 import com.dam2.appmovil.R
 import com.dam2.appmovil.databinding.ActivityAgregarClienteBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -12,6 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import modelo.Almacen
+import modelo.AlmacenCliente
 import modelo.Cliente
 
 class AgregarCliente : AppCompatActivity() {
@@ -41,13 +43,21 @@ class AgregarCliente : AppCompatActivity() {
         binding.imgUser.setOnClickListener {
             fileUpload()
         }
+        //Menu superior
+        binding.toolbarDetalle.setTitle("Agrega un cliente nuevo" )
+        setSupportActionBar(binding.toolbarDetalle)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        binding.toolbarDetalle.setNavigationOnClickListener {
+            val miAdapter = AdaptadorRecyclerCliente(AlmacenCliente.Clientes,this )
+            finish()
+        }
     }
 
 
     fun construirCliente(): Cliente {
         val nombre = binding.txtNombre.text
         val apellido = binding.txtApellidos.text
-        val telefono = binding.txtTelefono.text
+        val telefono = binding.Telefono.text
         return Cliente(nombre.toString(), apellido.toString(), telefono.toString())
     }
     fun fileUpload() {
@@ -60,10 +70,10 @@ class AgregarCliente : AppCompatActivity() {
             binding.imgUser.setImageURI(uri)
             Log.d(TAG, "Cargada")
             val Folder: StorageReference =
-                FirebaseStorage.getInstance().getReference().child("cliente")
+                FirebaseStorage.getInstance().getReference().child("cliente/${Almacen.usuario.correo}/")
 //            val file_name: StorageReference = Folder.child("" + uri!!.lastPathSegment) //<-- Podemos coger el último segmento de toda la ruta como nombre.
             val file_name: StorageReference =
-                Folder.child(binding.txtTelefono.text.toString())  //<-- Podemos poner el nombre que queramos. lo leo de la caja de texto.
+                Folder.child(binding.txtApellidos.text.toString())  //<-- Podemos poner el nombre que queramos. lo leo de la caja de texto.
             file_name.putFile(uri).addOnSuccessListener { taskSnapshot ->
                 file_name.getDownloadUrl().addOnSuccessListener { uri ->
                 }
@@ -76,12 +86,12 @@ class AgregarCliente : AppCompatActivity() {
     private fun limpiarCampos() {
         binding.txtApellidos.text!!.clear()
         binding.txtNombre.text!!.clear()
-        binding.txtTelefono.text!!.clear()
+        binding.Telefono.text!!.clear()
 
     }
     private fun todosLosCamposLlenos(): Boolean {
         return !binding.txtApellidos.text.isNullOrEmpty() &&
                 !binding.txtNombre.text.isNullOrEmpty() &&
-                !binding.txtTelefono.text.isNullOrEmpty()
+                !binding.Telefono.text.isNullOrEmpty()
     }
 }

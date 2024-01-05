@@ -32,8 +32,10 @@
     <string name="correo_hotmail_com">Correo@hotmail.com</string>
     <string name="confirma_tu_contrase_a">Confirma tu contraseña</string>
     <string name="title">Error</string>
+    <string name="titleAbout">Acerca de</string>
     <string name="messageFieldError">Debes completar los campos</string>
     <string name="messageRegister">Error al hacer el registro</string>
+    <string name="messageAbout">Bienvenido a Tripify, tu plataforma para gestionar tus viajes de manera optima, puedes agregar clientes y programar tus proximos viajes, puedes contactarnos al siguiente correo: krenecas@gmail.com</string>
     <string name="positive_button">Aceptar</string>
     <string name="viajes"> Viajes</string>
     <string name="viajes_en_pendientes">Viajes en pendientes</string>

@@ -177,6 +177,30 @@ object Conexion {
             }
     }
 
+    fun modificarCliente(c:Cliente,context:Context){
+        val db = FirebaseFirestore.getInstance()
+        var cliente = hashMapOf(
+            "email" to Almacen.usuario.correo.toString(),
+            "nombre" to c.nombre.toString(),
+            "apellido" to c.apellido.toString(),
+            "telefono" to c.numero.toString(),
+            "timestamp" to FieldValue.serverTimestamp()
+        )
+        db.collection("clients").document(c.llave.toString())
+            .set(cliente)
+            .addOnSuccessListener { documentReference ->
+                Toast.makeText(
+                    context,
+                    "El cliente ha sido modificado",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+            .addOnFailureListener {
+                Toast.makeText(context, "Ha ocurrido un error", Toast.LENGTH_SHORT).show()
+            }.addOnCompleteListener {
+                Conexion.cargarClientes(Almacen.usuario.correo)
+            }
+    }
     fun modificarViajes(v: Viaje, context: Context) {
         val db = FirebaseFirestore.getInstance()
         var viaje = hashMapOf(

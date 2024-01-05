@@ -14,13 +14,12 @@ import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.dam2.appmovil.R
-import com.dam2.tripify.infoViajes
+import com.dam2.tripify.infoCliente2
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import modelo.Almacen
 import modelo.AlmacenCliente
-import modelo.AlmacenViajes
 import modelo.Cliente
 import java.io.File
 
@@ -40,7 +39,7 @@ class AdaptadorRecyclerCliente(var clientes:ArrayList<Cliente>, var context: Con
         val vista = LayoutInflater.from(parent.context).inflate(R.layout.cardview_clientes, parent, false)
         val viewHolder = ViewHolder(vista)
         viewHolder.itemView.setOnClickListener {
-            val intent = Intent(context, infoViajes::class.java)
+            val intent = Intent(context, infoCliente2::class.java)
             context.startActivity(intent)
         }
         return viewHolder
@@ -67,9 +66,9 @@ class AdaptadorRecyclerCliente(var clientes:ArrayList<Cliente>, var context: Con
             nombre.text = c.nombre
             apellido.text = c.apellido
             telefono.text = c.numero
-            var nomImagen = c.numero
+            var nomImagen = c.apellido
             //var spaceRef = storageRef.child("images/saturno.webp")
-            var spaceRef = storageRef.child("cliente/$nomImagen")
+            var spaceRef = storageRef.child("cliente/${Almacen.usuario.correo}/$nomImagen")
             val localfile = File.createTempFile("tempImage", "jpg")
             spaceRef.getFile(localfile).addOnSuccessListener {
                 val bitmap = BitmapFactory.decodeFile(localfile.absolutePath)
@@ -113,10 +112,11 @@ class AdaptadorRecyclerCliente(var clientes:ArrayList<Cliente>, var context: Con
 
                 true // Devuelve true para indicar que has manejado el evento de clic largo
             }
+            card.setOnClickListener{
+                var inte : Intent = Intent(context, infoCliente2::class.java)
+                inte.putExtra("obj",c)
+                ContextCompat.startActivity(context, inte, null)
+            }
         }
-    }
-    fun fileDownload() {
-
-
     }
 }

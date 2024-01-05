@@ -6,5 +6,16 @@
         android:icon="@drawable/ic_logout"
         android:title="Cerrar Sesion"
         app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/mnOp2"
+        android:icon="@drawable/about"
+        android:title="Acerca de"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/mnOp3"
+        android:icon="@drawable/ic_notificacion"
+        android:title="Acerca de"
+        app:showAsAction="ifRoom"/>
 
 </menu>

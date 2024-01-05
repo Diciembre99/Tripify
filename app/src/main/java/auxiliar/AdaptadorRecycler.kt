@@ -3,9 +3,12 @@ package auxiliar
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
@@ -13,8 +16,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dam2.appmovil.R
 import com.dam2.tripify.infoViajes
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
+import modelo.Almacen
+import modelo.AlmacenCliente
 import modelo.AlmacenViajes
 import modelo.Viaje
+import java.io.File
+import kotlin.math.log
 
 class AdaptadorRecycler(var viajes:ArrayList<Viaje>, var context: Context) : RecyclerView.Adapter<AdaptadorRecycler.ViewHolder>() {
 
@@ -45,17 +54,30 @@ class AdaptadorRecycler(var viajes:ArrayList<Viaje>, var context: Context) : Rec
 
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-
+        var storage = Firebase.storage
+        var storageRef = storage.reference
         val destino = view.findViewById(R.id.tvNombre) as TextView
         val cliente = view.findViewById(R.id.tvApellido) as TextView
         val hora = view.findViewById(R.id.tvTelefono) as TextView
         val card = view.findViewById(R.id.card) as CardView
-
+        val img = view.findViewById(R.id.imgCliente) as ImageView
         @SuppressLint("ResourceAsColor")
         fun bind(v: Viaje, context: Context, pos: Int, miAdaptadorRecycler: AdaptadorRecycler){
             destino.text = v.destino
-            cliente.text = v.cliente
             hora.text = v.hora
+            cliente.text = v.cliente
+            //Extrar los datos para buscarlos en la lista de clientes y asignar una foto
+            val apellidos = cliente.text.toString().substringAfter(" ")
+            var nomImagen = apellidos
+            Log.d("KRCC","$apellidos")
+            //var spaceRef = storageRef.child("images/saturno.webp")
+            var spaceRef = storageRef.child("cliente/${Almacen.usuario.correo}/$nomImagen")
+            val localfile = File.createTempFile("tempImage", "jpg")
+            spaceRef.getFile(localfile).addOnSuccessListener {
+                val bitmap = BitmapFactory.decodeFile(localfile.absolutePath)
+                img.setImageBitmap(bitmap)
+            }.addOnFailureListener {
+            }
             if (pos == seleccionado) {
                 with(destino) {
                     this.setTextColor(resources.getColor(R.color.red))

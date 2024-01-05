@@ -1,28 +1,45 @@
 package com.dam2.tripify
 
+import android.graphics.BitmapFactory
 import auxiliar.AdaptadorRecycler
 import android.icu.text.SimpleDateFormat
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.core.view.isVisible
 import com.dam2.appmovil.databinding.ActivityInfoViajesBinding
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import modelo.Almacen
 import modelo.AlmacenViajes
 import modelo.Viaje
+import java.io.File
 import java.util.Date
 import java.util.Locale
 
 class infoViajes : AppCompatActivity() {
     lateinit var binding: ActivityInfoViajesBinding
+    var storage = Firebase.storage
+    var storageRef = storage.reference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityInfoViajesBinding.inflate(layoutInflater)
         setContentView(binding.root)
         var v = intent.getSerializableExtra("obj") as Viaje
 
+        val apellidos = v.cliente.substringAfter(" ")
+        var nomImagen = apellidos
+        //var spaceRef = storageRef.child("images/saturno.webp")
+        var spaceRef = storageRef.child("cliente/${Almacen.usuario.correo}/$nomImagen")
+        val localfile = File.createTempFile("tempImage", "jpg")
+        spaceRef.getFile(localfile).addOnSuccessListener {
+            val bitmap = BitmapFactory.decodeFile(localfile.absolutePath)
+            binding.imgViaje.setImageBitmap(bitmap)
+        }.addOnFailureListener {
+        }
         if (Almacen.usuario.rol == "pasajero"){
 
             binding.swEdit.isVisible = false

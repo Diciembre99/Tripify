@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.dam2.tripify.infoViajes">
+    tools:context="com.dam2.tripify.infoCliente2">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_detalle"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
@@ -34,7 +34,7 @@
         app:layout_constraintVertical_bias="0.5">
 
         <ImageView
-            android:id="@+id/imgViaje"
+            android:id="@+id/imgUser"
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:layout_marginTop="15dp"
@@ -47,7 +47,7 @@
             android:id="@+id/tvClient"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/informacion_del_viaje"
+            android:text="Informacion del cliente"
             android:textAlignment="center"
             android:textSize="34sp" />
         <ScrollView
@@ -68,14 +68,14 @@
                     android:layout_marginTop="15dp"
                     android:layout_marginRight="50dp"
                     android:enabled="false"
-                    android:hint="@string/cliente"
+                    android:hint="@string/nombre"
                     app:boxStrokeWidth="0dp"
                     app:boxStrokeWidthFocused="0dp"
                     app:endIconMode="clear_text"
                     app:hintEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/cliente"
+                        android:id="@+id/txtNombre"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/rounded_corners"
@@ -90,14 +90,14 @@
                     android:layout_marginTop="15dp"
                     android:layout_marginRight="50dp"
                     android:enabled="false"
-                    android:hint="@string/origen"
+                    android:hint="@string/apellidos"
                     app:boxStrokeWidth="0dp"
                     app:boxStrokeWidthFocused="0dp"
                     app:endIconMode="clear_text"
                     app:hintEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/origen"
+                        android:id="@+id/txtApellidos"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/rounded_corners"
@@ -105,7 +105,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/txtDestino"
+                    android:id="@+id/Telefono"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="50dp"
@@ -118,85 +118,13 @@
                     app:hintEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/destino"
+                        android:id="@+id/txtTelefono"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/rounded_corners"
-                        android:hint="@string/destino"
+                        android:hint="@string/telefono"
                         android:textColor="#B3040404" />
                 </com.google.android.material.textfield.TextInputLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/txtFecha"
-                        android:layout_width="220dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="50dp"
-                        android:layout_marginTop="15dp"
-                        android:enabled="false"
-                        android:hint="@string/fecha"
-                        app:boxStrokeWidth="0dp"
-                        app:boxStrokeWidthFocused="0dp"
-                        app:endIconMode="clear_text"
-                        app:hintEnabled="true">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/fecha"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/rounded_corners"
-                            android:textColor="#B3040404" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <ImageView
-                        android:id="@+id/btnFecha"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="20dp"
-                        android:src="@drawable/ic_calendario"
-                        android:visibility="invisible" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/txtHora"
-                        android:layout_width="220dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="50dp"
-                        android:layout_marginTop="15dp"
-                        android:enabled="false"
-                        android:hint="@string/hora"
-                        app:boxStrokeWidth="0dp"
-                        app:boxStrokeWidthFocused="0dp"
-                        app:endIconMode="clear_text"
-                        app:hintEnabled="true">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/hora"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/rounded_corners"
-                            android:textColor="#B3040404" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <ImageView
-                        android:id="@+id/btnClock"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="20dp"
-                        android:src="@drawable/baseline_access_time_24"
-                        android:visibility="invisible" />
-                </LinearLayout>
 
                 <Switch
                     android:id="@+id/swEdit"
@@ -225,5 +153,4 @@
         </ScrollView>
 
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

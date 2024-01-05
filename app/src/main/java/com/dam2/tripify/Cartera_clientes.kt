@@ -22,6 +22,23 @@ class Cartera_clientes : Fragment() {
         super.onCreate(savedInstanceState)
     }
 
+    override fun onStart() {
+        miRecyclerView = binding.recyclerClientes as RecyclerView
+        miRecyclerView.setHasFixedSize(true)//hace que se ajuste a lo que has diseñado
+        miRecyclerView.layoutManager = LinearLayoutManager(requireContext())//se dice el tipo de Layout, dejampos este.
+        val miAdapter = AdaptadorRecyclerCliente(AlmacenCliente.Clientes,requireContext() )
+        miRecyclerView.adapter = miAdapter
+        super.onStart()
+    }
+    override fun onResume() {
+        super.onResume()
+        miRecyclerView = binding.recyclerClientes as RecyclerView
+        miRecyclerView.setHasFixedSize(true)//hace que se ajuste a lo que has diseñado
+        miRecyclerView.layoutManager = LinearLayoutManager(requireContext())//se dice el tipo de Layout, dejampos este.
+        val miAdapter = AdaptadorRecyclerCliente(AlmacenCliente.Clientes,requireContext() )
+        miRecyclerView.adapter = miAdapter
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -32,6 +49,7 @@ class Cartera_clientes : Fragment() {
         miRecyclerView.layoutManager = LinearLayoutManager(requireContext())//se dice el tipo de Layout, dejampos este.
         val miAdapter = AdaptadorRecyclerCliente(AlmacenCliente.Clientes,requireContext() )
         miRecyclerView.adapter = miAdapter
+
         binding.btnAgregarCliente.setOnClickListener {
             val intent = Intent(context, AgregarCliente::class.java)
             startActivity(intent)

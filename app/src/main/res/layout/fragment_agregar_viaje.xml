@@ -34,25 +34,27 @@
                     android:textSize="34sp" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textField"
+                    android:id="@+id/txtDestino"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="50dp"
                     android:layout_marginRight="50dp"
-                    android:hint="@string/ubicacion"
                     app:boxStrokeWidth="0dp"
                     app:boxStrokeWidthFocused="0dp"
                     app:endIconMode="clear_text"
                     app:hintEnabled="false">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/txtDestino"
+
+                    <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                        android:id="@+id/spinnerDestino"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:background="@drawable/rounded_corners"
-                        android:hint="@string/ubicacion"
-                        android:textColor="#B3040404" /> <!-- Usar el fondo con esquinas redondas -->
+                        android:hint="@string/destino"
+                        android:padding="15dp"
+                        android:textColor="#B3040404" />
                 </com.google.android.material.textfield.TextInputLayout>
+
 
                 <TextView
                     android:id="@+id/textView17"
@@ -65,23 +67,24 @@
                     android:textSize="34sp" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/origen"
+                    android:id="@+id/txtOrigen"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="50dp"
                     android:layout_marginRight="50dp"
-                    android:hint="@string/ubicacion"
                     app:boxStrokeWidth="0dp"
                     app:boxStrokeWidthFocused="0dp"
                     app:endIconMode="clear_text"
                     app:hintEnabled="false">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/txtOrigen"
+
+                    <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                        android:id="@+id/spinnerOrigen"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:background="@drawable/rounded_corners"
-                        android:hint="@string/ubicacion"
+                        android:hint="@string/origen"
+                        android:padding="15dp"
                         android:textColor="#B3040404" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -95,26 +98,30 @@
                     android:textColor="#000000"
                     android:textSize="34sp" />
 
+
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/cliente"
+                    android:id="@+id/txtCliente"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="50dp"
                     android:layout_marginRight="50dp"
-                    android:hint="@string/cliente"
                     app:boxStrokeWidth="0dp"
                     app:boxStrokeWidthFocused="0dp"
                     app:endIconMode="clear_text"
                     app:hintEnabled="false">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/txtCliente"
+
+                    <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                        android:id="@+id/materialSpinner"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:background="@drawable/rounded_corners"
-                        android:hint="@string/cliente"
+                        android:hint="Seleccionar opción"
+                        android:padding="15dp"
                         android:textColor="#B3040404" />
                 </com.google.android.material.textfield.TextInputLayout>
+
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -216,6 +223,7 @@
 
             </LinearLayout>
         </ScrollView>
+
     </LinearLayout>
 
 
